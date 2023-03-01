@@ -1,0 +1,19 @@
+.app__register {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.app__register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 33%;
+}
+
+@media screen and (max-width:650px) {
+    .app__register-form {
+        width: auto;
+    }
+}

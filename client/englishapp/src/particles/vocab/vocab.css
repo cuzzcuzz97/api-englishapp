@@ -1,0 +1,19 @@
+
+.app__main-container__folder-addlist__listvocab {
+    display: flex;
+    flex-direction: column;
+}
+
+.listvocab-item__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.listvocab-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0 1rem 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid;
+}

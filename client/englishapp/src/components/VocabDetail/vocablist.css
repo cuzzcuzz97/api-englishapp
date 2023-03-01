@@ -1,0 +1,14 @@
+.app__main-container__folder-listvocab {
+    display: flex;
+    flex-direction: column;
+}
+
+.app__main-container__folder-listvocab__item {
+    margin: 5px;
+    color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-image: linear-gradient(0deg,rgb(103, 103, 253),rgb(107, 255, 243));
+    cursor: pointer;
+}

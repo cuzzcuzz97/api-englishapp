@@ -1,0 +1,54 @@
+.app__main {
+    /* color: white; */
+}
+
+.app__main-container {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 8rem;
+    background-color: white ;
+    border-radius: 20px;
+    padding: 1rem;
+}
+
+.app__main-container__folder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem;
+}
+
+.app__main-container__folder-addbtn {
+    display: flex;
+    justify-content: center;
+
+}
+.app__main-container__folder-addbtn span {
+    color: white;
+    text-align: center;
+    background-image: linear-gradient(90deg,rgb(212, 141, 228),rgb(62, 158, 227));
+    padding: 5px;
+    border-radius: 5px;
+    width: 200px;
+    border: 1px solid black;
+    cursor: pointer;
+    user-select: none;
+}
+
+.app__main-container__folder-title {
+    text-align: center;
+    width: 100%;
+}
+
+
+@media screen and (max-width: 650px) {
+    .app__main-container {
+        margin: 0;
+    }
+    .app__main-container__folder{
+        font-size: 13px;
+        margin: 0;
+    }
+
+}

@@ -1,0 +1,66 @@
+.app__main-container__folder-nameoflist {
+    margin: 1rem 0;
+}
+
+.app__main-container__folder-nameoflist input {
+    border: none;
+    border-bottom: 1px solid;
+    padding: 10px 0;
+    background-color: aliceblue;
+    width: 100%;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.app__main-container__folder-addlist form {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+.new_vocab-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.form_addword-btn {
+    display: flex;
+}
+
+.form_addword button {
+    background-image: linear-gradient(0deg,rgb(103, 103, 253),rgb(107, 255, 243));
+    color: white;
+    border-radius: 10px;
+    border: none;
+    margin-left: 20px;
+    font-weight: bold;
+
+}
+
+.form_addword button:active {
+    background-image: linear-gradient(0deg,rgb(23, 23, 119),rgb(107, 255, 243));
+}
+
+.new_vocab-form input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid;
+}
+
+.new_vocab-add {
+    background-color: green;
+}
+
+.listvocab-item__meaning {
+    font-style: italic;
+}
+
+.listvocab-item__vocab {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
