@@ -14,7 +14,7 @@ require('./middlewares/passport-middleware')
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://example.com'],
+  origin: ['http://localhost:3000', 'http://example.com','https://api-englishapp-production.up.railway.app/'],
   credentials: true
 }));
 // {
