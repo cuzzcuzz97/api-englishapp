@@ -19,6 +19,7 @@ exports.getUsers = async (req,res) => {
 
 exports.getUser = async (req, res) => {
     try {
+    console.log(req.cookies.token)
       const decoded = verify(req.cookies.token, SECRETKEY);
       const user_id = decoded.id;
   
@@ -29,7 +30,6 @@ exports.getUser = async (req, res) => {
         user: response.rows[0]
       });
     } catch (err) {
-      console.log(err.message);
       return res.status(500).json({
         error: err.message
       });
