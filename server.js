@@ -14,9 +14,16 @@ require('./middlewares/passport-middleware')
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://example.com','https://api-englishapp-production.up.railway.app/'],
+  origin: ['http://localhost:3000', 'http://example.com'],
   credentials: true
 }));
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 // {
 //   origin: 'http://localhost:3000',
 //   credentials: true
