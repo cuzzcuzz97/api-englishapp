@@ -2,7 +2,8 @@ const db = require('../db');
 const { hash } = require('bcryptjs')
 const { sign, verify } = require('jsonwebtoken')
 require('dotenv').config()
-const SECRETKEY = require('../constants')
+
+const SECRETKEY = process.env.SECRET_KEY;
 
 exports.getUsers = async (req,res) => {
     try {
@@ -14,6 +15,9 @@ exports.getUsers = async (req,res) => {
         })
     } catch (err) {
         console.log(err.message)
+        return res.status(500).json({
+            error: err.message
+        })
     }
 }
 
@@ -33,7 +37,7 @@ exports.getUser = async (req, res) => {
         error: err.message
       });
     }
-  };
+};
 
 
 exports.register = async (req,res) => {
@@ -47,7 +51,7 @@ exports.register = async (req,res) => {
             )
         return res.status(201).json({
             success: true,
-            message: 'registration was successful'
+            message: 'Registration was successful'
         })
     } catch (err) {
         console.log(err.message)
@@ -64,10 +68,10 @@ exports.login = async (req,res) => {
         email: user.email,
     }
     try {
-        const token = await sign(payload,SECRETKEY);
-        return res.status(200).cookie('token',token, { httpOnly: true}).json({
+        const token = await sign(payload, SECRETKEY);
+        return res.status(200).cookie('token',token, { httpOnly: false}).json({
             success: true,
-            message: 'Logged in successfully'
+            message: 'Logged in successfully',
         })
     } catch (error) {
         console.log(error.message)
@@ -80,17 +84,20 @@ exports.login = async (req,res) => {
 exports.protected = async (req, res) => {
     try {
         if (!req.cookies.token) {
-            return res.status(500).json({
-                message: 'not authenticated'
+            return res.status(401).json({
+                message: 'Not authenticated'
             })
         }
-      return res.status(200).json({
-        info: 'protected info',
-      })
+        return res.status(200).json({
+            info: 'Protected info',
+        })
     } catch (error) {
-      console.log(error.message)
+        console.log(error.message)
+        return res.status(500).json({
+            error: error.message
+        })
     }
-  }
+}
 
 exports.logout = async (req,res) => {
     try {
