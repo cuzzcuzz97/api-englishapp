@@ -3,7 +3,6 @@ const router = express.Router();
 const pool = require('../db');
 const { validationMiddleware } = require('../middlewares/validations-middleware')
 const { sign, verify } = require('jsonwebtoken')
-// const token = await sign(payload,SECRETKEY);
 
 
 router.post("/", async (req,res) => {
@@ -48,7 +47,6 @@ router.get('/', async(req,res) => {
 router.get('/:user_id',validationMiddleware, async(req,res) => {
   try {
     const {user_id} = req.params
-    console.log(req.cookies.token)
     const listvocab = await pool.query("SELECT * FROM listvocab where user_id = $1",[user_id]);
     res.json(listvocab.rows);
   } catch (err) {
