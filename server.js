@@ -13,7 +13,10 @@ const passport = require('passport')
 require('./middlewares/passport-middleware')
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'http://example.com'],
+  credentials: true
+}));
 // {
 //   origin: 'http://localhost:3000',
 //   credentials: true
