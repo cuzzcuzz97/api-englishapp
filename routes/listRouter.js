@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db');
+const { validationMiddleware } = require('../middlewares/validations-middleware')
+const { sign, verify } = require('jsonwebtoken')
+// const token = await sign(payload,SECRETKEY);
+
 
 router.post("/", async (req,res) => {
   try {
@@ -41,7 +45,7 @@ router.get('/', async(req,res) => {
 });
 
 // get vocab with user info
-router.get('/:user_id', async(req,res) => {
+router.get('/:user_id',validationMiddleware, async(req,res) => {
   try {
     const {user_id} = req.params
     console.log(req.cookies.token)
