@@ -2,8 +2,7 @@ const db = require('../db');
 const { hash } = require('bcryptjs')
 const { sign, verify } = require('jsonwebtoken')
 require('dotenv').config()
-
-const SECRETKEY = process.env.SECRET_KEY;
+const SECRETKEY = require('../constants')
 
 exports.getUsers = async (req,res) => {
     try {
