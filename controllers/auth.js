@@ -20,28 +20,9 @@ exports.getUsers = async (req,res) => {
     }
 }
 
-// exports.getUser = async (req, res) => {
-//     try {
-//       const decoded = verify(req.cookies.token, SECRETKEY);
-//       const user_id = decoded.id;
-  
-//       const response = await db.query('SELECT * FROM users WHERE user_id = $1', [user_id]);
-      
-//       return res.status(200).json({
-//         success: true,
-//         user: response.rows[0]
-//       });
-//     } catch (err) {
-//       return res.status(500).json({
-//         error: err.message
-//       });
-//     }
-// };
-
 exports.getUser = async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-      const decoded = verify(token, SECRETKEY);
+      const decoded = verify(req.cookies.token, SECRETKEY);
       const user_id = decoded.id;
   
       const response = await db.query('SELECT * FROM users WHERE user_id = $1', [user_id]);
@@ -86,15 +67,14 @@ exports.login = async (req,res) => {
     }
     try {
         const token = await sign(payload, SECRETKEY, { expiresIn: '7d' });
-        res.set('Authorization', `Bearer ${token}`); 
         res.cookie('token', token, { httpOnly: true,
             secure: false,
             maxAge: 604800000 });
         return res.status(200).json({
             success: true,
             message: 'Logged in successfully',
-            token: token
         })
+
     } catch (error) {
         console.log(error.message)
         return res.status(500).json({
@@ -103,41 +83,15 @@ exports.login = async (req,res) => {
     }
 }
 
-// exports.protected = async (req, res) => {
-//     try {
-//         if (!req.cookies.token) {
-//             return res.status(401).json({
-//                 message: 'Not authenticated'
-//             })
-//         }
-//         return res.status(200).json({
-//             info: 'Protected info',
-//         })
-//     } catch (error) {
-//         console.log(error.message)
-//         return res.status(500).json({
-//             error: error.message
-//         })
-//     }
-// }
 exports.protected = async (req, res) => {
     try {
-        const authHeader = req.headers.authorization;
-        if (!authHeader) {
+        if (!req.cookies.token) {
             return res.status(401).json({
                 message: 'Not authenticated'
             })
         }
-        const [scheme, token] = authHeader.split(' ');
-        if (scheme !== 'Bearer' || !token) {
-            return res.status(401).json({
-                message: 'Invalid token format'
-            })
-        }
-        const decoded = await verify(token, SECRETKEY);
         return res.status(200).json({
             info: 'Protected info',
-            user: decoded
         })
     } catch (error) {
         console.log(error.message)
