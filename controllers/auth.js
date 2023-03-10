@@ -68,7 +68,7 @@ exports.login = async (req,res) => {
     }
     try {
         const token = await sign(payload, SECRETKEY);
-        return res.status(200).cookie('token',token, { httpOnly: true }).json({
+        return res.status(200).cookie('token',token, { httpOnly: true, secure: false }).json({
             success: true,
             message: 'Logged in successfully',
         })
