@@ -15,10 +15,18 @@ require('./middlewares/passport-middleware')
 app.use(bodyParser.json());
 app.use(cors({
   origin: ['http://localhost:3000', 'https://localhost:3000'],
-  credentials: true
-}));
+  credentials: true,
+  secure: false
 
-app.use(cookieParser())
+}));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  next();
+});
+
+app.use(cookieParser({ sameSite: false }))
 app.use(passport.initialize())
 //import 
 
