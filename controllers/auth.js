@@ -72,6 +72,7 @@ exports.login = async (req,res) => {
         return res.status(200).json({
             success: true,
             message: 'Logged in successfully',
+            token: `Bearer ${token}`
         })
     } catch (error) {
         console.log(error.message)
