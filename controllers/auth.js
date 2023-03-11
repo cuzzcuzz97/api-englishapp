@@ -29,6 +29,8 @@ exports.getUsers = async (req,res) => {
 
 exports.getUser = async (req, res) => {
     try {
+        console.log('getUser called');
+        console.log('req.cookies:', req.cookies);
       const decoded = verify(req.cookies.token, SECRETKEY);
       const user_id = decoded.id;
   
