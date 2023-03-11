@@ -15,6 +15,7 @@ require('./middlewares/passport-middleware')
 app.use(bodyParser.json());
 app.use(cors({
   origin: ['http://localhost:3000', 'https://localhost:3000'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
   secure: false
 }));
