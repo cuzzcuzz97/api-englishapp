@@ -80,8 +80,8 @@ exports.login = async (req,res) => {
         const token = await sign(payload, SECRETKEY, { expiresIn: '7d' });
         res.cookie('token', token, { 
             httpOnly: false,
-            secure: false,
-            sameSite: 'strict',
+            secure: true,
+            sameSite: 'none',
             maxAge: 604800000 });
         return res.status(200).json({
             success: true,
