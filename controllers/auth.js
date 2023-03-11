@@ -6,6 +6,13 @@ const SECRETKEY = require('../constants')
 
 exports.getUsers = async (req,res) => {
     try {
+        if (!req.user || req.user.role !== 'admin') {
+            return res.status(403).json({
+                success: false,
+                message: 'You are not authorized to access this resource'
+            });
+        }
+        
         const response = await db.query(`select user_id, email from users`)
         
         return res.status(200).json({
@@ -37,6 +44,8 @@ exports.getUser = async (req, res) => {
       });
     }
 };
+
+
 
 exports.register = async (req,res) => {
     const {email,username,password} = req.body;
