@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 });
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://localhost:3000', 'https://englishapp-react-production.up.railway.app'],
+  origin: ['http://localhost:3000', 'https://localhost:3000', 'https://englishapp-react-production.up.railway.app','https://english-master.up.railway.app'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
