@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 
 app.use((req, res, next) => {
-  const allowedOrigins = ['https://englishapp-react-production.up.railway.app'];
+  const allowedOrigins = ['https://englishapp-react-production.up.railway.app','https://english-master.up.railway.app'];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
